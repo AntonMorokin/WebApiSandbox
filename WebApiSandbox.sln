@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiHost", "WebApiHost\WebApiHost.csproj", "{E5C32F17-19BD-4CD6-A556-F684F44B0EAF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Model", "Core.Model\Core.Model.csproj", "{5896A515-B842-4155-A571-190375FFE117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Model", "Core\Core.Model\Core.Model.csproj", "{5896A515-B842-4155-A571-190375FFE117}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2709FE76-0CEA-4A89-9DB6-2F81591DF563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5896A515-B842-4155-A571-190375FFE117} = {2709FE76-0CEA-4A89-9DB6-2F81591DF563}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB8470DA-C796-48D8-AA29-94008F01346D}
