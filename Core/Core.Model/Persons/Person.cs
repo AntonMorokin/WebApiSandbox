@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Core.Model.Persons
 {
@@ -13,5 +14,7 @@ namespace Core.Model.Persons
         public DateTime BirthDate { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public List<Trip> Trips { get; set; }
     }
 }

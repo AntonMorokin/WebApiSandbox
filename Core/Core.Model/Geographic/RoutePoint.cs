@@ -1,11 +1,9 @@
 ﻿namespace Core.Model.Geographic
 {
-    public class RoutePoint
+    public class RoutePoint : Point
     {
-        public int RoutePointId { get; set; }
+        public int PositionInRoute { get; set; }
 
-        public Point Point { get; set; }
-
-        public int Position { get; set; }
+        public Route Route { get; set; }
     }
 }

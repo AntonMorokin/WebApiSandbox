@@ -1,4 +1,6 @@
-﻿namespace Core.Model.Geographic
+﻿using System.Collections.Generic;
+
+namespace Core.Model.Geographic
 {
     public class CheckPoint : Point
     {
@@ -8,6 +10,6 @@
 
         public string Description { get; set; }
 
-        public override bool IsCheckPoint => true;
+        public List<CheckPointToRouteMapping> RoutesMapping { get; set; }
     }
 }

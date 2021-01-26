@@ -15,6 +15,10 @@ namespace Core.Model
 
         public decimal ExpectedDurationInDays { get; set; }
 
-        public List<RoutePoint> Points { get; set; }
+        public List<RoutePoint> SimplePoints { get; set; }
+
+        public List<CheckPointToRouteMapping> CheckPointsMapping { get; set; }
+
+        public List<Trip> Trips { get; set; }
     }
 }

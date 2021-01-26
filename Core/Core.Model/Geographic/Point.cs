@@ -1,6 +1,6 @@
 ﻿namespace Core.Model.Geographic
 {
-    public class Point
+    public abstract class Point
     {
         public LatitudeType LatitudeType { get; set; }
 
@@ -11,7 +11,5 @@
         public decimal Longitude { get; set; }
 
         public decimal Altitude { get; set; }
-
-        public virtual bool IsCheckPoint => false;
     }
 }
