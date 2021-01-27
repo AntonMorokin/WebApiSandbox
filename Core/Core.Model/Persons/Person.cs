@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Model.Persons
 {
-    public class Person
+    public abstract class Person
     {
         public int PersonId { get; set; }
 

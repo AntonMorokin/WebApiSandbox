@@ -17,6 +17,8 @@ namespace Core.Model
 
         public List<RoutePoint> SimplePoints { get; set; }
 
+        public List<CheckPoint> CheckPoints { get; set; }
+
         public List<CheckPointToRouteMapping> CheckPointsMapping { get; set; }
 
         public List<Trip> Trips { get; set; }

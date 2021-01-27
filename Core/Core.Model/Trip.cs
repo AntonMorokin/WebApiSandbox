@@ -9,11 +9,13 @@ namespace Core.Model
     {
         public int TripId { get; private set; }
 
+        public int RouteId { get; set; }
+
         public Route Route { get; set; }
 
         public List<Employee> Guides { get; set; }
 
-        public List<Person> Participants { get; set; }
+        public List<Client> Participants { get; set; }
 
         public RoutePoint LastPassedPoint { get; set; }
 
