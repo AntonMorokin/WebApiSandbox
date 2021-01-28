@@ -17,6 +17,8 @@ namespace Core.Model
 
         public List<Client> Participants { get; set; }
 
+        public int LastPassedPointId { get; set; }
+
         public RoutePoint LastPassedPoint { get; set; }
 
         public DateTime StartTime { get; set; }

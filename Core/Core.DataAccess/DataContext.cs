@@ -2,6 +2,7 @@
 using Core.Model.Geographic;
 using Core.Model.Persons;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Core.DataAccess
 {
@@ -31,12 +32,20 @@ namespace Core.DataAccess
 
             modelBuilder.Entity<Client>()
                 .Property(c => c.PersonId)
+                .HasColumnName(nameof(Client) + "Id");
+
+            modelBuilder.Entity<Client>()
+                .Property(c => c.PersonId)
                 // Just for annotating.
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Client>()
-                .Property(c => c.PhoneNumber)
-                .IsRequired(false);
+                .Property(c => c.FirstName)
+                .IsRequired();
+
+            modelBuilder.Entity<Client>()
+                .Property(c => c.LastName)
+                .IsRequired();
 
             #endregion
 
@@ -47,11 +56,23 @@ namespace Core.DataAccess
 
             modelBuilder.Entity<Employee>()
                 .Property(e => e.PersonId)
+                .HasColumnName(nameof(Employee) + "Id");
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.PersonId)
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Employee>()
-                .Property(e => e.PhoneNumber)
-                .IsRequired(false);
+                .Property(e => e.FirstName)
+                .IsRequired();
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.LastName)
+                .IsRequired();
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.Position)
+                .IsRequired();
 
             #endregion
 
@@ -84,16 +105,16 @@ namespace Core.DataAccess
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<CheckPoint>()
+                .Property(p => p.Name)
+                .IsRequired();
+
+            modelBuilder.Entity<CheckPoint>()
                 .Property(p => p.LatitudeType)
                 .HasConversion<string>();
 
             modelBuilder.Entity<CheckPoint>()
                 .Property(p => p.LongitudeType)
                 .HasConversion<string>();
-
-            modelBuilder.Entity<CheckPoint>()
-                .Property(p => p.Description)
-                .IsRequired(false);
 
             #endregion
 
@@ -107,8 +128,8 @@ namespace Core.DataAccess
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Route>()
-                .Property(r => r.Description)
-                .IsRequired(false);
+                .Property(r => r.Name)
+                .IsRequired();
 
             #endregion
 
@@ -132,12 +153,28 @@ namespace Core.DataAccess
             modelBuilder.Entity<Client>()
                 .HasMany(c => c.Trips)
                 .WithMany(t => t.Participants)
-                .UsingEntity(e => e.ToTable("ClientsToRoutes"));
+                .UsingEntity<Dictionary<string, object>>(
+                    "ClientsToTrips",
+                    e => e.HasOne<Trip>()
+                        .WithMany()
+                        .HasForeignKey(nameof(Trip.TripId)),
+                    e => e.HasOne<Client>()
+                        .WithMany()
+                        .HasForeignKey(nameof(Client) +  "Id")
+                );
 
             modelBuilder.Entity<Employee>()
-                .HasMany(c => c.Trips)
+                .HasMany(e => e.Trips)
                 .WithMany(t => t.Guides)
-                .UsingEntity(e => e.ToTable("EmployeesToTrips"));
+                .UsingEntity<Dictionary<string, object>>(
+                    "EmployeesToTrips",
+                    e => e.HasOne<Trip>()
+                        .WithMany()
+                        .HasForeignKey(nameof(Trip.TripId)),
+                    e => e.HasOne<Employee>()
+                        .WithMany()
+                        .HasForeignKey(nameof(Employee) + "Id")
+                );
 
             modelBuilder.Entity<RoutePoint>()
                 .HasOne(p => p.Route)
