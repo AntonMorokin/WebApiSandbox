@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2709FE76-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Database", "Core\Core.Database\Core.Database.csproj", "{1E586E20-5BB6-4FBC-97A0-170F68DE7D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Logic", "Core\Core.Logic\Core.Logic.csproj", "{6EA6EAED-2218-49AF-B498-C4D62252A2C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Logic", "Core\Core.Logic\Core.Logic.csproj", "{6EA6EAED-2218-49AF-B498-C4D62252A2C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataAccess", "Core\Core.DataAccess\Core.DataAccess.csproj", "{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{6EA6EAED-2218-49AF-B498-C4D62252A2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EA6EAED-2218-49AF-B498-C4D62252A2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EA6EAED-2218-49AF-B498-C4D62252A2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{5896A515-B842-4155-A571-190375FFE117} = {2709FE76-0CEA-4A89-9DB6-2F81591DF563}
 		{1E586E20-5BB6-4FBC-97A0-170F68DE7D35} = {2709FE76-0CEA-4A89-9DB6-2F81591DF563}
 		{6EA6EAED-2218-49AF-B498-C4D62252A2C3} = {2709FE76-0CEA-4A89-9DB6-2F81591DF563}
+		{5ACC34AB-0EC0-4F83-95FB-733F6BAA3B3B} = {2709FE76-0CEA-4A89-9DB6-2F81591DF563}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB8470DA-C796-48D8-AA29-94008F01346D}
