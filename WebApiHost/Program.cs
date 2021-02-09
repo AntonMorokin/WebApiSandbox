@@ -14,6 +14,7 @@ namespace WebApiHost
         {
             return Host
                 .CreateDefaultBuilder(args)
+                .UseWindsorContainerServiceProvider()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
