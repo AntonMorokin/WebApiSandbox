@@ -18,9 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.DataAccess\Core.DataAccess.csproj" />
-    <ProjectReference Include="..\Core\Core.Database\Core.Database.csproj" />
-    <ProjectReference Include="..\Core\Core.Logic\Core.Logic.csproj" />
+    <ProjectReference Include="..\DependencyInjection\DI\DI.csproj" />
   </ItemGroup>
 
 </Project>

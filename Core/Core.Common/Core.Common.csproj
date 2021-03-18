@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\SolutionItems\AssemblyCommonInfo.cs" Link="AssemblyCommonInfo.cs" />
+    <ProjectReference Include="..\..\DependencyInjection\DI.Abstractions\DI.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
