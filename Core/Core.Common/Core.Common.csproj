@@ -8,9 +8,4 @@
     <Compile Include="..\..\SolutionItems\AssemblyCommonInfo.cs" Link="AssemblyCommonInfo.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
-    <ProjectReference Include="..\Core.Database\Core.Database.csproj" />
-  </ItemGroup>
-
 </Project>

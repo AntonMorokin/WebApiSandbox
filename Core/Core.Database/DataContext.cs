@@ -4,7 +4,7 @@ using Core.Model.Persons;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Core.DataAccess
+namespace Core.Database
 {
     public sealed class DataContext : DbContext
     {
@@ -160,7 +160,7 @@ namespace Core.DataAccess
                         .HasForeignKey(nameof(Trip.TripId)),
                     e => e.HasOne<Client>()
                         .WithMany()
-                        .HasForeignKey(nameof(Client) +  "Id")
+                        .HasForeignKey(nameof(Client) + "Id")
                 );
 
             modelBuilder.Entity<Employee>()

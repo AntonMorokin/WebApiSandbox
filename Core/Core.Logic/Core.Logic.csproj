@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\SolutionItems\AssemblyCommonInfo.cs" Link="AssemblyCommonInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Common\Core.Common.csproj" />
+    <ProjectReference Include="..\Core.DataAccess\Core.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
