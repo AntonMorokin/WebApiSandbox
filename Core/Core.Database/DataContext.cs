@@ -1,8 +1,5 @@
 ﻿using Core.Model;
-using Core.Model.Geographic;
-using Core.Model.Persons;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Core.Database
 {
@@ -10,13 +7,9 @@ namespace Core.Database
     {
         public DbSet<Client> Clients { get; set; }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
-        public DbSet<CheckPoint> CheckPoints { get; set; }
-
-        public DbSet<Route> Routes { get; set; }
-
-        public DbSet<Trip> Trips { get; set; }
+        public DbSet<Drive> Drives { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -28,14 +21,10 @@ namespace Core.Database
             #region Client
 
             modelBuilder.Entity<Client>()
-                .HasKey(c => c.PersonId);
+                .HasKey(c => c.ClientId);
 
             modelBuilder.Entity<Client>()
-                .Property(c => c.PersonId)
-                .HasColumnName(nameof(Client) + "Id");
-
-            modelBuilder.Entity<Client>()
-                .Property(c => c.PersonId)
+                .Property(c => c.ClientId)
                 // Just for annotating.
                 .ValueGeneratedOnAdd();
 
@@ -47,103 +36,39 @@ namespace Core.Database
                 .Property(c => c.LastName)
                 .IsRequired();
 
-            #endregion
-
-            #region Employee
-
-            modelBuilder.Entity<Employee>()
-                .HasKey(e => e.PersonId);
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.PersonId)
-                .HasColumnName(nameof(Employee) + "Id");
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.PersonId)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.FirstName)
-                .IsRequired();
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.LastName)
-                .IsRequired();
-
-            modelBuilder.Entity<Employee>()
-                .Property(e => e.Position)
+            modelBuilder.Entity<Client>()
+                .Property(c => c.PhoneNumber)
                 .IsRequired();
 
             #endregion
 
-            #region RoutePoint
+            #region Car
 
-            modelBuilder.Entity<RoutePoint>()
-                .HasKey(p => p.PointId);
+            modelBuilder.Entity<Car>()
+                .HasKey(c => c.CarId);
 
-            modelBuilder.Entity<RoutePoint>()
-                .Property(p => p.PointId)
+            modelBuilder.Entity<Car>()
+                .Property(c => c.CarId)
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<RoutePoint>()
-                .Property(p => p.LatitudeType)
-                .HasConversion<string>();
-
-            modelBuilder.Entity<RoutePoint>()
-                .Property(p => p.LongitudeType)
-                .HasConversion<string>();
-
-            #endregion
-
-            #region CheckPoint
-
-            modelBuilder.Entity<CheckPoint>()
-                .HasKey(p => p.PointId);
-
-            modelBuilder.Entity<CheckPoint>()
-                .Property(p => p.PointId)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<CheckPoint>()
-                .Property(p => p.Name)
+            modelBuilder.Entity<Car>()
+                .Property(c => c.Number)
                 .IsRequired();
 
-            modelBuilder.Entity<CheckPoint>()
-                .Property(p => p.LatitudeType)
-                .HasConversion<string>();
+            modelBuilder.Entity<Car>()
+                .HasIndex(c => c.Number)
+                .IsUnique();
 
-            modelBuilder.Entity<CheckPoint>()
-                .Property(p => p.LongitudeType)
-                .HasConversion<string>();
-
-            #endregion
-
-            #region Route
-
-            modelBuilder.Entity<Route>()
-                .HasKey(r => r.RouteId);
-
-            modelBuilder.Entity<Route>()
-                .Property(r => r.RouteId)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Route>()
-                .Property(r => r.Name)
+            modelBuilder.Entity<Car>()
+                .Property(c => c.BrandName)
                 .IsRequired();
 
-            #endregion
+            modelBuilder.Entity<Car>()
+                .Property(c => c.ModelName)
+                .IsRequired();
 
-            #region Trip
-
-            modelBuilder.Entity<Trip>()
-                .HasKey(t => t.TripId);
-
-            modelBuilder.Entity<Trip>()
-                .Property(t => t.TripId)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<Trip>()
-                .Property(t => t.Status)
+            modelBuilder.Entity<Car>()
+                .Property(c => c.Status)
                 .HasConversion<string>();
 
             #endregion
@@ -151,60 +76,26 @@ namespace Core.Database
             #region Relations
 
             modelBuilder.Entity<Client>()
-                .HasMany(c => c.Trips)
-                .WithMany(t => t.Participants)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ClientsToTrips",
-                    e => e.HasOne<Trip>()
-                        .WithMany()
-                        .HasForeignKey(nameof(Trip.TripId)),
-                    e => e.HasOne<Client>()
-                        .WithMany()
-                        .HasForeignKey(nameof(Client) + "Id")
-                );
-
-            modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Trips)
-                .WithMany(t => t.Guides)
-                .UsingEntity<Dictionary<string, object>>(
-                    "EmployeesToTrips",
-                    e => e.HasOne<Trip>()
-                        .WithMany()
-                        .HasForeignKey(nameof(Trip.TripId)),
-                    e => e.HasOne<Employee>()
-                        .WithMany()
-                        .HasForeignKey(nameof(Employee) + "Id")
-                );
-
-            modelBuilder.Entity<RoutePoint>()
-                .HasOne(p => p.Route)
-                .WithMany(r => r.SimplePoints)
-                .HasForeignKey(r => r.RouteId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<CheckPoint>()
-                .HasMany(p => p.Routes)
-                .WithMany(r => r.CheckPoints)
-                .UsingEntity<CheckPointToRouteMapping>(
+                .HasMany(c => c.UsedCars)
+                .WithMany(c => c.UsedByClients)
+                .UsingEntity<Drive>(
                     e => e
-                        .HasOne(m => m.Route)
-                        .WithMany(r => r.CheckPointsMapping)
-                        .HasForeignKey(m => m.RouteId)
+                        .HasOne(d => d.Car)
+                        .WithMany(c => c.Drives)
+                        .HasForeignKey(d => d.CarId)
                         .OnDelete(DeleteBehavior.Cascade),
                     e => e
-                        .HasOne(m => m.Point)
-                        .WithMany(p => p.RoutesMapping)
-                        .HasForeignKey(m => m.CheckPointId)
+                        .HasOne(d => d.Client)
+                        .WithMany(c => c.Drives)
+                        .HasForeignKey(m => m.ClientId)
                         .OnDelete(DeleteBehavior.Cascade),
                     e =>
                     {
-                        e.HasKey(m => new { m.RouteId, m.CheckPointId });
+                        e.HasKey(d => d.DriveId);
+                        e.Property(d => d.DriveId).ValueGeneratedOnAdd();
+                        e.Property(d => d.StartingAddress).IsRequired();
+                        e.Property(d => d.FinishingAddress).IsRequired();
                     });
-
-            modelBuilder.Entity<Trip>()
-                .HasOne(t => t.Route)
-                .WithMany(r => r.Trips)
-                .HasForeignKey(t => t.TripId);
 
             #endregion
         }

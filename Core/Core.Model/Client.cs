@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Core.Model.Persons
+namespace Core.Model
 {
-    public abstract class Person
+    public class Client
     {
-        public int PersonId { get; set; }
+        public int ClientId { get; private set; }
 
         public string FirstName { get; set; }
 
@@ -15,6 +15,8 @@ namespace Core.Model.Persons
 
         public string PhoneNumber { get; set; }
 
-        public List<Trip> Trips { get; set; }
+        public List<Car> UsedCars { get; set; }
+
+        public List<Drive> Drives { get; set; }
     }
 }

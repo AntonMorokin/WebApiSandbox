@@ -1,4 +1,5 @@
-﻿using DI.Abstractions;
+﻿using Core.Logic.Clients;
+using DI.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

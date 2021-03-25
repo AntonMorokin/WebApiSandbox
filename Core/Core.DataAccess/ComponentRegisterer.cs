@@ -1,4 +1,4 @@
-﻿using Core.DataAccess.Persons;
+﻿using Core.DataAccess.Clients;
 using DI.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,10 +1,10 @@
 ﻿using Core.Common;
-using Core.DataAccess.Persons;
-using Core.Model.Persons;
+using Core.DataAccess.Clients;
+using Core.Model;
 using System;
 using System.Threading.Tasks;
 
-namespace Core.Logic
+namespace Core.Logic.Clients
 {
     internal class ClientService : IClientService
     {
@@ -20,7 +20,7 @@ namespace Core.Logic
             _clientDataProvider = clientDataProvider;
         }
 
-        public Task<Client> CreateNewClientAsync(string firstName, string lastName, DateTime birthDate, string phoneNumber = null)
+        public Task<Client> CreateNewClientAsync(string firstName, string lastName, DateTime birthDate, string phoneNumber)
         {
             if (string.IsNullOrEmpty(firstName))
             {
@@ -30,6 +30,11 @@ namespace Core.Logic
             if (string.IsNullOrEmpty(lastName))
             {
                 throw new ArgumentNullException(nameof(lastName));
+            }
+
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                throw new ArgumentNullException(nameof(phoneNumber));
             }
 
             birthDate = birthDate.Date;

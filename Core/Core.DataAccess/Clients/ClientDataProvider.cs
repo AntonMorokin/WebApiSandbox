@@ -1,9 +1,9 @@
 ﻿using Core.Database;
-using Core.Model.Persons;
+using Core.Model;
 using System;
 using System.Threading.Tasks;
 
-namespace Core.DataAccess.Persons
+namespace Core.DataAccess.Clients
 {
     internal class ClientDataProvider : IClientDataProvider
     {
@@ -14,7 +14,7 @@ namespace Core.DataAccess.Persons
             _dataContext = dataContext;
         }
 
-        public async Task<Client> CreateNewClientAsync(string firstName, string lastName, DateTime birthDate, string phoneNumber = null)
+        public async Task<Client> CreateNewClientAsync(string firstName, string lastName, DateTime birthDate, string phoneNumber)
         {
             if (string.IsNullOrEmpty(firstName))
             {
@@ -24,6 +24,11 @@ namespace Core.DataAccess.Persons
             if (string.IsNullOrEmpty(lastName))
             {
                 throw new ArgumentNullException(nameof(lastName));
+            }
+
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                throw new ArgumentNullException(nameof(phoneNumber));
             }
 
             var client = new Client
