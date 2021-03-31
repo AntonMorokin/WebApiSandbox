@@ -19,7 +19,9 @@ namespace Core.Model
 
         public decimal KilometersHaveBeenDriven { get; set; }
 
-        public CarStatus Status { get; set; }
+        public CarState State { get; set; }
+
+        public string ParkingAddress { get; set; }
 
         public List<Client> UsedByClients { get; set; }
 

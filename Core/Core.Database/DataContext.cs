@@ -68,7 +68,7 @@ namespace Core.Database
                 .IsRequired();
 
             modelBuilder.Entity<Car>()
-                .Property(c => c.Status)
+                .Property(c => c.State)
                 .HasConversion<string>();
 
             #endregion

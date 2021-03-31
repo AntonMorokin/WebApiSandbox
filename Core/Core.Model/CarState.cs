@@ -1,6 +1,6 @@
 ﻿namespace Core.Model
 {
-    public enum CarStatus
+    public enum CarState
     {
         Active,
         Repairing,
