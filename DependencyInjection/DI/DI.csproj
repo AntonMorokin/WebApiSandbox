@@ -13,6 +13,7 @@
     <ProjectReference Include="..\..\Core\Core.Common\Core.Common.csproj" />
     <ProjectReference Include="..\..\Core\Core.DataAccess\Core.DataAccess.csproj" />
     <ProjectReference Include="..\..\Core\Core.Logic\Core.Logic.csproj" />
+    <ProjectReference Include="..\..\Interoperation\Converters\Interoperation.Converters.DTO\Interoperation.Converters.DTO.csproj" />
     <ProjectReference Include="..\DI.Abstractions\DI.Abstractions.csproj" />
   </ItemGroup>
 

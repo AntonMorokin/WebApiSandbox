@@ -1,4 +1,4 @@
-﻿using Core.Logic.Clients;
+﻿using Core.Logic.Cars;
 using DI.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +9,7 @@ namespace Core.Logic
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddSingleton<IClientService, ClientService>();
+            services.AddTransient<ICarService, CarService>();
         }
     }
 }

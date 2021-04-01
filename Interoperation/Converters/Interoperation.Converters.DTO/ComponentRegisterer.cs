@@ -1,15 +1,16 @@
-﻿using Core.DataAccess.Cars;
+﻿using Core.Model;
 using DI.Abstractions;
+using Interoperation.Model.DTO.Cars;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.DataAccess
+namespace Interoperation.Converters.DTO
 {
     public sealed class ComponentRegisterer : IComponentRegisterer
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddTransient<ICarDataProvider, CarDataProvider>();
+            services.AddTransient<IConverter<Car, CarDto>, CarConverter>();
         }
     }
 }

@@ -13,12 +13,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DependencyInjection\DI\DI.csproj" />
+    <ProjectReference Include="..\Interoperation\Controllers\Controllers.Cars\Interoperation.Controllers.Cars.csproj" />
   </ItemGroup>
 
 </Project>

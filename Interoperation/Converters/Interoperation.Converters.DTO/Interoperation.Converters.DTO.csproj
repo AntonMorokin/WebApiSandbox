@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Core.Model\Core.Model.csproj" />
+    <ProjectReference Include="..\..\..\DependencyInjection\DI.Abstractions\DI.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Helpers\Helpers.Checkers\Helpers.Checkers.csproj" />
+    <ProjectReference Include="..\..\Model\Interoperation.Model.DTO\Interoperation.Model.DTO.csproj" />
+  </ItemGroup>
+
+</Project>

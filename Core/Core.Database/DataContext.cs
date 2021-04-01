@@ -93,8 +93,11 @@ namespace Core.Database
                     {
                         e.HasKey(d => d.DriveId);
                         e.Property(d => d.DriveId).ValueGeneratedOnAdd();
+
                         e.Property(d => d.StartingAddress).IsRequired();
                         e.Property(d => d.FinishingAddress).IsRequired();
+
+                        e.Ignore(d => d.IsInProgress);
                     });
 
             #endregion

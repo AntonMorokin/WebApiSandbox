@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
 
 namespace WebApiHost
 {
@@ -19,13 +21,21 @@ namespace WebApiHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddApplicationPart(LoadCarsControllersAssembly());
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiHost", Version = "v1" });
             });
 
             DI.Container.RegisterComponents(Configuration, services);
+        }
+
+        private static Assembly LoadCarsControllersAssembly()
+        {
+            return Assembly.Load("Interoperation.Controllers.Cars");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

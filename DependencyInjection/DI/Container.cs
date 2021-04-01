@@ -35,6 +35,8 @@ namespace DI
             yield return new Core.Database.ComponentRegisterer();
             yield return new Core.DataAccess.ComponentRegisterer();
             yield return new Core.Logic.ComponentRegisterer();
+
+            yield return new Interoperation.Converters.DTO.ComponentRegisterer();
         }
     }
 }
