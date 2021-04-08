@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interoperation", "Interoper
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{81DE9849-B559-4D91-A6E8-45E43365DF6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interoperation.Controllers.Cars", "Interoperation\Controllers\Controllers.Cars\Interoperation.Controllers.Cars.csproj", "{E3548DB4-6F7B-4C5A-A6CF-59D3EBD4D232}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interoperation.Controllers", "Interoperation\Controllers\Interoperation.Controllers.csproj", "{E3548DB4-6F7B-4C5A-A6CF-59D3EBD4D232}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{76567A31-81B4-42A6-829A-0A8BB0D479E4}"
 EndProject

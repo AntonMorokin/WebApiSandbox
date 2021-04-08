@@ -1,29 +1,28 @@
 ﻿using Core.Logic.Cars;
 using Core.Model;
 using Interoperation.Converters.DTO;
-using Interoperation.Model.DTO.Cars;
+using Interoperation.Model.DTO.Public;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Interoperation.Controllers.Cars
+namespace Interoperation.Controllers.Cars.Public
 {
     [ApiController]
-    [Route("[controller]")]
-    public sealed class CarsController : ControllerBase
+    [Route(ControllerScopes.PUBLIC + "/" + ControllerNames.CARS)]
+    public sealed class PublicCarsController : ControllerBase
     {
         private readonly ICarService _carService;
-        private readonly IConverter<Car, CarDto> _converter;
+        private readonly IConverter<Car, PublicCarDto> _converter;
 
-        public CarsController(ICarService carService, IConverter<Car, CarDto> converter)
+        public PublicCarsController(ICarService carService, IConverter<Car, PublicCarDto> converter)
         {
             _carService = carService;
             _converter = converter;
         }
 
         [HttpGet]
-        [Route("available")]
-        public IEnumerable<CarDto> GetAvailableCars()
+        public IEnumerable<PublicCarDto> GetAvailableCars()
         {
             return _carService
                 .GetAvailableCars()

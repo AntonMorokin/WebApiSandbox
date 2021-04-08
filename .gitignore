@@ -1,5 +1,7 @@
 .vs/
 bin/
 obj/
-TODO.txt
 *.user
+
+
+clean.cmd

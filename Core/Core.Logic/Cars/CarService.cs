@@ -18,5 +18,10 @@ namespace Core.Logic.Cars
             // There is no "real" logic. But only for now...
             return _dataProvider.GetAvailableCars();
         }
+
+        public IEnumerable<Car> GetCarsUsedByClientWithDrives(int clientId)
+        {
+            return _dataProvider.GetCarsUsedByClientWithDrives(clientId);
+        }
     }
 }

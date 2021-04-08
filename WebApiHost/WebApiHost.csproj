@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DependencyInjection\DI\DI.csproj" />
-    <ProjectReference Include="..\Interoperation\Controllers\Controllers.Cars\Interoperation.Controllers.Cars.csproj" />
+    <ProjectReference Include="..\Interoperation\Controllers\Interoperation.Controllers.csproj" />
   </ItemGroup>
 
 </Project>

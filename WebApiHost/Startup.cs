@@ -35,7 +35,7 @@ namespace WebApiHost
 
         private static Assembly LoadCarsControllersAssembly()
         {
-            return Assembly.Load("Interoperation.Controllers.Cars");
+            return Assembly.Load("Interoperation.Controllers");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

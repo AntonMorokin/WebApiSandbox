@@ -6,5 +6,7 @@ namespace Core.Logic.Cars
     public interface ICarService
     {
         IEnumerable<Car> GetAvailableCars();
+
+        IEnumerable<Car> GetCarsUsedByClientWithDrives(int clientId);
     }
 }

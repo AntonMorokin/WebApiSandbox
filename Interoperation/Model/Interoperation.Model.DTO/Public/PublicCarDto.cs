@@ -1,6 +1,6 @@
-﻿namespace Interoperation.Model.DTO.Cars
+﻿namespace Interoperation.Model.DTO.Public
 {
-    public sealed class CarDto
+    public sealed class PublicCarDto
     {
         public string BrandName { get; set; }
 

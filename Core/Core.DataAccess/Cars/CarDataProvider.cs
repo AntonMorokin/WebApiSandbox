@@ -18,10 +18,20 @@ namespace Core.DataAccess.Cars
         public IEnumerable<Car> GetAvailableCars()
         {
             return _dataContext.Cars
-                .Include(c => c.Drives)
                 .Where(c => c.State == CarState.Active
-                            // Use two negation to optimize quiery.
                             && !c.Drives.Any(d => !d.FinishingDateTime.HasValue))
+                .Include(c => c.Drives)
+                .ToList();
+        }
+
+        public IEnumerable<Car> GetCarsUsedByClientWithDrives(int clientId)
+        {
+            CarState[] availableCarStates = { CarState.Active, CarState.Repairing, CarState.Crashed };
+
+            return _dataContext.Cars
+                .Where(c => availableCarStates.Contains(c.State)
+                            && c.UsedByClients.Any(cl => cl.ClientId == clientId))
+                .Include(c => c.Drives)
                 .ToList();
         }
     }
