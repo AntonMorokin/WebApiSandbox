@@ -1,7 +1,7 @@
 ﻿using Core.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Database
+namespace Core.Database.Domain
 {
     public sealed class DataContext : DbContext
     {

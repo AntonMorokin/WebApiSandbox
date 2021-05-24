@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Core.Database.Migrations
+namespace Core.Database.Domain.Migrations
 {
     public partial class CarModelUpdates : Migration
     {
