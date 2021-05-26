@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Core.Model
+namespace Core.Model.Domain
 {
     public class Car
     {

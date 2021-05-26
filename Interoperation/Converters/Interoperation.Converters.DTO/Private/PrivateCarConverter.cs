@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
 using Interoperation.Model.DTO.Private;
 using System.Linq;
 using System.Text;

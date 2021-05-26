@@ -1,7 +1,8 @@
 ﻿using Core.Database.Identity;
 using Core.Logic.Cars;
+using Core.Logic.Identity;
 using Core.Logic.Settings;
-using Core.Model;
+using Core.Model.Identity;
 using DI.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -13,13 +14,17 @@ namespace Core.Logic
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddTransient<ICarService, CarService>();
+            services.AddScoped<ICarService, CarService>();
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddIdentityCore<IdentifiedUser>()
                 .AddEntityFrameworkStores<IdentityDataContext>()
+                .AddUserManager<UserManager<IdentifiedUser>>()
                 .AddSignInManager<SignInManager<IdentifiedUser>>();
-
-            services.AddTransient<IDbInitializer, DbInitializer>();
+            
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IAuthManager, AuthManager>();
         }
     }
 }

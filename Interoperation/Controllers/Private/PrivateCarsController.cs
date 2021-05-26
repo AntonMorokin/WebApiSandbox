@@ -1,5 +1,5 @@
 ﻿using Core.Logic.Cars;
-using Core.Model;
+using Core.Model.Domain;
 using Interoperation.Controllers.Cars;
 using Interoperation.Converters.DTO;
 using Interoperation.Model.DTO.Private;

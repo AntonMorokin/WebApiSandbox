@@ -1,4 +1,4 @@
-﻿namespace Core.Model
+﻿namespace Core.Model.Domain
 {
     public enum CarState
     {

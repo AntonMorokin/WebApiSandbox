@@ -1,13 +1,14 @@
 ﻿using Core.Logic.Settings;
 using Interoperation.Controllers.Cars;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 
-namespace Interoperation.Controllers.Public
+namespace Interoperation.Controllers.Management
 {
     [ApiController]
     [Route(ControllerScopes.MANAGEMENT + ControllerNames.SETTINGS)]
-    public sealed class PublicSettingsController : ControllerBase
+    public sealed class ManagementSettingsController : ControllerBase
     {
         [HttpGet("initialize")]
         public async Task<IActionResult> InitializeAsync([FromServices] IDbInitializer dbInitializer)
@@ -19,7 +20,7 @@ namespace Interoperation.Controllers.Public
             }
             catch
             {
-                return new StatusCodeResult(500);
+                return new StatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
         }
     }

@@ -6,6 +6,6 @@
         
         public const string PRIVATE = "private/";
         
-        public const string MANAGEMENT = "management";
+        public const string MANAGEMENT = "management/";
     }
 }

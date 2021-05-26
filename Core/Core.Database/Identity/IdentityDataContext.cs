@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using Core.Model.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

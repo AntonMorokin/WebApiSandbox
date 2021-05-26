@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Cars;
-using Core.Model;
+using Core.Model.Domain;
 using System.Collections.Generic;
 
 namespace Core.Logic.Cars

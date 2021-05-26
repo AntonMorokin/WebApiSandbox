@@ -1,5 +1,5 @@
 ﻿using Core.Database.Identity;
-using Core.Model;
+using Core.Model.Identity;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -19,15 +19,19 @@ namespace Core.Logic.Settings
         public async Task InitializeAsync()
         {
             _dataContext.Users.RemoveRange(_dataContext.Users);
+            // We have to wait for fully rows removing.
+            _dataContext.SaveChanges();
 
             var manager = new IdentifiedUser
             {
+                DisplayName = "Oleg the Manager",
                 UserName = "Manager",
                 Email = "manager@myapp.com"
             };
 
             var user = new IdentifiedUser
             {
+                DisplayName = "Alyosha the User",
                 UserName = "User",
                 Email = "user@myapp.com"
             };

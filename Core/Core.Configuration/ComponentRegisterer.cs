@@ -1,15 +1,18 @@
-﻿using Core.DataAccess.Cars;
+﻿using Core.Configuration.Options;
 using DI.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.DataAccess
+namespace Core.Configuration
 {
     public sealed class ComponentRegisterer : IComponentRegisterer
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddScoped<ICarDataProvider, CarDataProvider>();
+            services
+                .AddOptions<JwtGenerationOptions>()
+                .BindConfiguration(JwtGenerationOptions.SECTION_NAME)
+                .ValidateDataAnnotations();
         }
     }
 }

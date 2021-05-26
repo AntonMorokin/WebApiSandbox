@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
 using System.Collections.Generic;
 
 namespace Core.DataAccess.Cars

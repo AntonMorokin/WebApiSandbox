@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
 using Interoperation.Model.DTO.Private;
 
 namespace Interoperation.Converters.DTO.Private

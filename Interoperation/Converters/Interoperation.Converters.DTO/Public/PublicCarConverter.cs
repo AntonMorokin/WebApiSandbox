@@ -1,8 +1,8 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
 using Helpers.Checkers;
 using Interoperation.Model.DTO.Public;
 
-namespace Interoperation.Converters.DTO
+namespace Interoperation.Converters.DTO.Public
 {
     internal sealed class PublicCarConverter : IConverter<Car, PublicCarDto>
     {

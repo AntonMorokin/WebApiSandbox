@@ -1,4 +1,4 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Database.Domain

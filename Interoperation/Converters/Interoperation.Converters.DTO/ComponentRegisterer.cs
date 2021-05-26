@@ -1,6 +1,8 @@
-﻿using Core.Model;
+﻿using Core.Model.Domain;
+using Core.Model.Identity;
 using DI.Abstractions;
 using Interoperation.Converters.DTO.Private;
+using Interoperation.Converters.DTO.Public;
 using Interoperation.Model.DTO.Private;
 using Interoperation.Model.DTO.Public;
 using Microsoft.Extensions.Configuration;
@@ -12,10 +14,11 @@ namespace Interoperation.Converters.DTO
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddTransient<IConverter<Car, PublicCarDto>, PublicCarConverter>();
+            services.AddScoped<IConverter<Car, PublicCarDto>, PublicCarConverter>();
+            services.AddScoped<IConverter<AuthenticatedUser, PublicAuthenticatedUserDto>, PublicAuthenticatedUserConverter>();
 
-            services.AddTransient<IConverter<Car, PrivateCarDto>, PrivateCarConverter>();
-            services.AddTransient<IConverter<Drive, PrivateDriveDto>, PrivateDriveConverter>();
+            services.AddScoped<IConverter<Car, PrivateCarDto>, PrivateCarConverter>();
+            services.AddScoped<IConverter<Drive, PrivateDriveDto>, PrivateDriveConverter>();
         }
     }
 }

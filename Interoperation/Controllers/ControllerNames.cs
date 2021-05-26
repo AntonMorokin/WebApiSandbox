@@ -2,8 +2,10 @@
 {
     internal static class ControllerNames
     {
-        public const string CARS = "cars";
+        public const string CARS = "cars/";
 
-        public const string SETTINGS = "settings";
+        public const string SETTINGS = "settings/";
+
+        public const string IDENTITY = "auth/";
     }
 }

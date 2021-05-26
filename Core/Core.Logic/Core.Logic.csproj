@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DependencyInjection\DI.Abstractions\DI.Abstractions.csproj" />
+    <ProjectReference Include="..\Core.Configuration\Core.Configuration.csproj" />
     <ProjectReference Include="..\Core.DataAccess\Core.DataAccess.csproj" />
     <ProjectReference Include="..\Core.Model\Core.Model.csproj" />
   </ItemGroup>
