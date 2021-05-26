@@ -1,7 +1,7 @@
 ﻿using Core.Common;
 using Core.Model.Identity;
+using Helpers.Checkers;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Threading.Tasks;
 
 namespace Core.Logic.Identity
@@ -21,9 +21,42 @@ namespace Core.Logic.Identity
             _jwtGenerator = jwtGenerator;
         }
 
-        public Task<SimpleResult<AuthenticatedUser>> AuthenticateUserAsync(string email, string password)
+        public async Task<SimpleResult<AuthenticatedUser>> AuthenticateUserAsync(string email, string password)
         {
-            throw new NotImplementedException();
+            ArgumentChecker.ThrowIfNullOrEmpty(email, nameof(email));
+            ArgumentChecker.ThrowIfNullOrEmpty(password, nameof(password));
+
+            var user = await _userMananger.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return new SimpleResult<AuthenticatedUser>
+                {
+                    Success = false,
+                    ErrorMessage = "There is no user with such email."
+                };
+            }
+
+            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+            if (signInResult.Succeeded)
+            {
+                var jwt = _jwtGenerator.Generate(user.UserName);
+                return new SimpleResult<AuthenticatedUser>
+                {
+                    Success = true,
+                    Result = new AuthenticatedUser
+                    {
+                        DisplayName = user.DisplayName,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        AccessToken = jwt
+                    }
+                };
+            }
+
+            return new SimpleResult<AuthenticatedUser>
+            {
+                Success = false
+            };
         }
     }
 }

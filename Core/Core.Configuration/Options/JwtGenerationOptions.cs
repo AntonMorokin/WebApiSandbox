@@ -6,7 +6,7 @@ namespace Core.Configuration.Options
     {
         public const string SECTION_NAME = "Jwt";
 
-        [Required, StringLength(32, MinimumLength = 32)]
+        [Required, StringLength(64, MinimumLength = 64)]
         public string SecretKey { get; init; }
     }
 }

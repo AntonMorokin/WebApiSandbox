@@ -32,6 +32,7 @@ namespace DI
             // But I don't realy want it because of performance and unexpected behavior.
 
             yield return new Core.Common.ComponentRegisterer();
+            yield return new Core.Configuration.ComponentRegisterer();
             yield return new Core.Database.ComponentRegisterer();
             yield return new Core.DataAccess.ComponentRegisterer();
             yield return new Core.Logic.ComponentRegisterer();

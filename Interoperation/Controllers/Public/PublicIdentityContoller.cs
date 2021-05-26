@@ -24,7 +24,7 @@ namespace Interoperation.Controllers.Public
             _converter = converter;
         }
 
-        [HttpGet]
+        [HttpGet("getToken")]
         public async Task<ActionResult<PublicAuthenticatedUserDto>> GetToken(
             [FromQuery, Required, EmailAddress] string email,
             [FromQuery, Required, MaxLength(128)] string password)

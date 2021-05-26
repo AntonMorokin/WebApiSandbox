@@ -12,5 +12,12 @@ namespace Helpers.Checkers
                 throw new ArgumentNullException(argumentName);
             }
         }
+        public static void ThrowIfNullOrEmpty(string value, string argumentName)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(argumentName);
+            }
+        }
     }
 }

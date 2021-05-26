@@ -8,7 +8,7 @@ namespace Core.Common
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
-            services.AddSingleton<ITimeManager, TimeManager>();
+            services.AddScoped<ITimeManager, TimeManager>();
         }
     }
 }

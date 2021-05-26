@@ -23,7 +23,7 @@ namespace WebApiHost
         {
             services
                 .AddControllers()
-                .AddApplicationPart(LoadCarsControllersAssembly());
+                .AddApplicationPart(LoadControllersAssembly());
 
             services.AddSwaggerGen(c =>
             {
@@ -33,7 +33,7 @@ namespace WebApiHost
             DI.Container.RegisterComponents(Configuration, services);
         }
 
-        private static Assembly LoadCarsControllersAssembly()
+        private static Assembly LoadControllersAssembly()
         {
             return Assembly.Load("Interoperation.Controllers");
         }
