@@ -10,5 +10,14 @@ namespace Core.Database.Identity
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            // Add new property to the model.
+            builder.Entity<IdentifiedUser>()
+                .Property(u => u.DisplayName);
+        }
     }
 }

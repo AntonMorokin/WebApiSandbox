@@ -10,7 +10,7 @@ using System.Linq;
 namespace Interoperation.Controllers.Private
 {
     [ApiController]
-    [Route(ControllerScopes.PRIVATE + "/" + ControllerNames.CARS)]
+    [Route(ControllerScopes.PRIVATE + ControllerNames.CARS)]
     public sealed class PrivateCarsController
     {
         private readonly ICarService _carService;

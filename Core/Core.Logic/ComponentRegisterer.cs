@@ -1,5 +1,6 @@
 ﻿using Core.Database.Identity;
 using Core.Logic.Cars;
+using Core.Logic.Settings;
 using Core.Model;
 using DI.Abstractions;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,8 @@ namespace Core.Logic
             services.AddIdentityCore<IdentifiedUser>()
                 .AddEntityFrameworkStores<IdentityDataContext>()
                 .AddSignInManager<SignInManager<IdentifiedUser>>();
+
+            services.AddTransient<IDbInitializer, DbInitializer>();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Linq;
 namespace Interoperation.Controllers.Cars.Public
 {
     [ApiController]
-    [Route(ControllerScopes.PUBLIC + "/" + ControllerNames.CARS)]
+    [Route(ControllerScopes.PUBLIC + ControllerNames.CARS)]
     public sealed class PublicCarsController : ControllerBase
     {
         private readonly ICarService _carService;

@@ -1,29 +1,20 @@
-﻿using Core.Database;
-using Core.Model;
+﻿using Core.Logic.Settings;
 using Interoperation.Controllers.Cars;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Interoperation.Controllers.Public
 {
     [ApiController]
-    [Route(ControllerScopes.PUBLIC + "/" + "settings")]
+    [Route(ControllerScopes.MANAGEMENT + ControllerNames.SETTINGS)]
     public sealed class PublicSettingsController : ControllerBase
     {
-        private UserManager<IdentifiedUser> _userManager;
-
-        public PublicSettingsController(UserManager<IdentifiedUser> userManager)
-        {
-            _userManager = userManager;
-        }
-
         [HttpGet("initialize")]
-        public async Task<IActionResult> InitializeAsync()
+        public async Task<IActionResult> InitializeAsync([FromServices] IDbInitializer dbInitializer)
         {
             try
             {
-                await DbInitializer.InitializeAsync(_userManager);
+                await dbInitializer.InitializeAsync();
                 return Ok();
             }
             catch
