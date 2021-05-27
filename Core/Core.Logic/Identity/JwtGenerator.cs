@@ -26,10 +26,14 @@ namespace Core.Logic.Identity
         {
             var claims = new Claim[] { new Claim(JwtRegisteredClaimNames.NameId, userName) };
 
+            var now = _timeManager.LocalDateTime;
+
             var descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = _timeManager.LocalDateTime.Add(__expiryTimeout),
+                IssuedAt = now,
+                NotBefore = now,
+                Expires = now.Add(__expiryTimeout),
                 SigningCredentials = CreateCredentials()
             };
 

@@ -3,6 +3,7 @@ using Core.Model.Identity;
 using Interoperation.Controllers.Cars;
 using Interoperation.Converters.DTO;
 using Interoperation.Model.DTO.Public;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
@@ -12,6 +13,7 @@ namespace Interoperation.Controllers.Public
 {
     [ApiController]
     [Route(ControllerScopes.PUBLIC + ControllerNames.IDENTITY)]
+    [AllowAnonymous]
     public sealed class PublicIdentityContoller : ControllerBase
     {
         private IAuthManager _authManager;

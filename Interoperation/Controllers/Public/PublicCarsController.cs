@@ -2,6 +2,7 @@
 using Core.Model.Domain;
 using Interoperation.Converters.DTO;
 using Interoperation.Model.DTO.Public;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Interoperation.Controllers.Cars.Public
 {
     [ApiController]
     [Route(ControllerScopes.PUBLIC + ControllerNames.CARS)]
+    [AllowAnonymous]
     public sealed class PublicCarsController : ControllerBase
     {
         private readonly ICarService _carService;
