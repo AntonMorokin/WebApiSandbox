@@ -1,6 +1,8 @@
 ﻿using Core.Database.Identity;
 using Core.Model.Identity;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Core.Logic.Settings
@@ -16,7 +18,7 @@ namespace Core.Logic.Settings
             _userManager = userManager;
         }
 
-        public async Task InitializeAsync()
+        public async Task CreateUsersAsync()
         {
             _dataContext.Users.RemoveRange(_dataContext.Users);
             // We have to wait for fully rows removing.
@@ -38,6 +40,22 @@ namespace Core.Logic.Settings
 
             await _userManager.CreateAsync(manager, "Qw1234!");
             await _userManager.CreateAsync(user, "Abc321*");
+        }
+
+        public async Task AddClaimsAsync()
+        {
+            var manager = await _userManager.FindByEmailAsync("manager@myapp.com");
+            if (manager == null)
+            {
+                return;
+            }
+
+            var claims = await _userManager.GetClaimsAsync(manager);
+            await _userManager.RemoveClaimsAsync(manager, claims);
+
+            var managerClaim = new Claim("IsManager", bool.TrueString);
+
+            await _userManager.AddClaimAsync(manager, managerClaim);
         }
     }
 }

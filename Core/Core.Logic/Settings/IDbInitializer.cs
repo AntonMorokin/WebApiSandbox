@@ -4,6 +4,8 @@ namespace Core.Logic.Settings
 {
     public interface IDbInitializer
     {
-        Task InitializeAsync();
+        Task CreateUsersAsync();
+
+        Task AddClaimsAsync();
     }
 }

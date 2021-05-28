@@ -1,4 +1,6 @@
+using Core.Logic.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,9 +36,11 @@ namespace WebApiHost
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiHost", Version = "v1" });
             });
 
+            // TODO Maybe it would be better to move these settings to a special place.
+            // For example, special extension methods.
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
+                .AddJwtBearerWithIdentity(o => o.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = LoadSecurityKey(),
@@ -44,6 +48,16 @@ namespace WebApiHost
                     ValidateAudience = false,
                     ValidateIssuer = false,
                     ClockSkew = __jwtValidationClockSkew
+                });
+
+            services
+                .AddAuthorization(o =>
+                {
+                    o.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+
+                    o.AddPolicy("IsManager", p => p.RequireClaim("IsManager", bool.TrueString));
                 });
 
             DI.Container.RegisterComponents(Configuration, services);

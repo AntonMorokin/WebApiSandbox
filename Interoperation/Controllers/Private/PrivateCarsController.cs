@@ -12,8 +12,7 @@ namespace Interoperation.Controllers.Private
 {
     [ApiController]
     [Route(ControllerScopes.PRIVATE + ControllerNames.CARS)]
-    [Authorize]
-    public sealed class PrivateCarsController
+    public sealed class PrivateCarsController : ControllerBase
     {
         private readonly ICarService _carService;
         private readonly IConverter<Car, PrivateCarDto> _converter;
@@ -24,13 +23,20 @@ namespace Interoperation.Controllers.Private
             _converter = converter;
         }
 
-        [HttpGet("{clientId}")]
+        [HttpGet("usedByClient/{clientId}")]
         public IEnumerable<PrivateCarDto> GetCarsUsedByClient([FromRoute] int clientId)
         {
             return _carService
                 .GetCarsUsedByClientWithDrives(clientId)
                 .Select(_converter.Convert)
                 .ToList();
+        }
+
+        [HttpGet("infoAbout/{carId}")]
+        [Authorize(Policy = "IsManager")]
+        public IActionResult GetCarInfo([FromRoute] int carId)
+        {
+            return Ok();
         }
     }
 }

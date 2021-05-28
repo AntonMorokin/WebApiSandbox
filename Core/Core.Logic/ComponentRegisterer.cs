@@ -7,6 +7,7 @@ using DI.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Core.Logic
 {
@@ -14,6 +15,10 @@ namespace Core.Logic
     {
         public void Register(IConfiguration configuration, IServiceCollection services)
         {
+            // Nice try MS. Really good job.
+            // At least you have given us a chance to disable this behavior.
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
             services.AddScoped<ICarService, CarService>();
 
             services.AddScoped<IDbInitializer, DbInitializer>();

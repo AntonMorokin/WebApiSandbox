@@ -39,7 +39,7 @@ namespace Core.Logic.Identity
             var signInResult = await _signInManager.CheckPasswordSignInAsync(user, password, false);
             if (signInResult.Succeeded)
             {
-                var jwt = _jwtGenerator.Generate(user.UserName);
+                var jwt = _jwtGenerator.Generate(user.Id);
                 return new SimpleResult<AuthenticatedUser>
                 {
                     Success = true,

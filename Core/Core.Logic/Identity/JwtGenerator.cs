@@ -1,5 +1,6 @@
 ﻿using Core.Common;
 using Core.Configuration.Options;
+using Helpers.Checkers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -22,9 +23,11 @@ namespace Core.Logic.Identity
             _settings = jwtGenerationOptions;
         }
 
-        public string Generate(string userName)
+        public string Generate(string userId)
         {
-            var claims = new Claim[] { new Claim(JwtRegisteredClaimNames.NameId, userName) };
+            ArgumentChecker.ThrowIfNullOrEmpty(userId, nameof(userId));
+
+            var claims = new Claim[] { new Claim(JwtRegisteredClaimNames.NameId, userId) };
 
             var now = _timeManager.LocalDateTime;
 
