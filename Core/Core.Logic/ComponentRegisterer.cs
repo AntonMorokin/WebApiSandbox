@@ -30,6 +30,7 @@ namespace Core.Logic
             
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddScoped<IAuthManager, AuthManager>();
+            // services.AddScoped<IAuthManager, InMemoryAuthManager>();
         }
     }
 }

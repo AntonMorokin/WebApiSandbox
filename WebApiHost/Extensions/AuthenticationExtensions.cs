@@ -1,4 +1,5 @@
-﻿using Core.Logic.Identity;
+﻿using Core.Configuration.Services;
+using Core.Logic.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -47,13 +48,11 @@ namespace WebApiHost.Extensions
         /// <remarks>
         /// In ConfigureService we can't use options.
         /// So the secret key must be loaded in a straightforward way.
-        /// TODO: change to X.509 certificate.
         /// </remarks>
         private static SecurityKey LoadSecurityKey(IConfiguration configuration)
         {
-            var key = configuration.GetValue<string>("Jwt:SecretKey");
-            var bytes = Convert.FromHexString(key);
-            return new SymmetricSecurityKey(bytes);
+            var cert = X509CertificateLoader.LoadCertificateForJwtProcessing(configuration);
+            return new X509SecurityKey(cert);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Core.Common;
-using Core.Configuration.Options;
+using Core.Configuration.Services;
 using Helpers.Checkers;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,12 +14,12 @@ namespace Core.Logic.Identity
         private static JwtSecurityTokenHandler __tokenHandler = new JwtSecurityTokenHandler();
 
         private ITimeManager _timeManager;
-        private IOptionsSnapshot<JwtGenerationOptions> _settings;
+        private IX509CertificateLoader _certificateLoader;
 
-        public JwtGenerator(ITimeManager timeManager, IOptionsSnapshot<JwtGenerationOptions> jwtGenerationOptions)
+        public JwtGenerator(ITimeManager timeManager, IX509CertificateLoader certificateLoader)
         {
             _timeManager = timeManager;
-            _settings = jwtGenerationOptions;
+            _certificateLoader = certificateLoader;
         }
 
         public string Generate(string userId)
@@ -37,18 +36,17 @@ namespace Core.Logic.Identity
                 IssuedAt = now,
                 NotBefore = now,
                 Expires = now.Add(__expiryTimeout),
-                SigningCredentials = CreateCredentials()
+                SigningCredentials = CreateSigningCredentials()
             };
 
             var token = __tokenHandler.CreateJwtSecurityToken(descriptor);
             return __tokenHandler.WriteToken(token);
         }
 
-        private SigningCredentials CreateCredentials()
+        private SigningCredentials CreateSigningCredentials()
         {
-            var securityKey = Convert.FromHexString(_settings.Value.SecretKey);
-            var signingKey = new SymmetricSecurityKey(securityKey);
-            return new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature);
+            var cert = _certificateLoader.CertificateForJwtProcessing.Value;
+            return new X509SigningCredentials(cert);
         }
     }
 }
