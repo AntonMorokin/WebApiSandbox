@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiHost", "WebApiHost\WebApiHost.csproj", "{E5C32F17-19BD-4CD6-A556-F684F44B0EAF}"
 EndProject
@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{9412
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers.Checkers", "Helpers\Helpers.Checkers\Helpers.Checkers.csproj", "{A0D5629A-F8CC-47C1-AF8D-833348A5B0F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Configuration", "Core\Core.Configuration\Core.Configuration.csproj", "{AFA72DC5-B9E2-4257-9BCC-2CFEB2FCC50B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Configuration", "Core\Core.Configuration\Core.Configuration.csproj", "{AFA72DC5-B9E2-4257-9BCC-2CFEB2FCC50B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
